@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('home.home');
+    return view('welcome');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -55,3 +55,6 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
