@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'CineLazer',
 
     'title_prefix' => '',
 
@@ -115,11 +115,32 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Atrações',
+            'url'         => '/atracoes',
             'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Sessões',
+            'url'         => '/sessoes',
+            'icon'        => 'file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Reservas',
+            'url'         => '/reservas',
+            'icon'        => 'file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Tipos',
+            'url'         => '/tipos',
+            'icon'        => 'file',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',
         [
