@@ -20,7 +20,7 @@ class RegisterUserTest extends DuskTestCase
                 ->visit(route('register'))
                 ->assertSee('Register a new membership')
                 ->type('name', 'Teste Register User')
-                ->type('email', 'registerUser@test.com')
+                ->type('email', 'registerUser9@test.com')
                 ->type('password', '12345678')
                 ->type('password_confirmation', '12345678')
                 ->press('.btn')

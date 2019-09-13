@@ -19,10 +19,15 @@ Cadastro de Reserva
         {!! Form::open(['route'=>'reservas.store']) !!}
 
         <div class="form-group">
-            {!! Form::label('sessao_id', 'Hábito:') !!}
+            {!! Form::label('sessao_id', 'Sessão:') !!}
             {!! Form::select('sessao_id', 
-                             \App\Sessao::orderBy('local')->pluck('local', 'id')->toArray(),null,
+                             \App\Sessoes::orderBy('local')->pluck('local', 'id')->toArray(),null,
                              ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('poltrona', 'Poltrona:') !!}
+            {!! Form::number('poltrona', null, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

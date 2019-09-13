@@ -41,6 +41,11 @@ Edição de Sessão
         </div>
 
         <div class="form-group">
+            {!! Form::label('numero_de_poltronas', 'Numero de poltronas:') !!}
+            {!! Form::number('numero_de_poltronas', $sessao->numero_de_poltronas, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Editar Sessão', ['class'=>'btn btn-primary']) !!}
         </div>
 

@@ -15,6 +15,8 @@ Sessões
                     <th>Local</th>
                     <th>Data</th>
                     <th>Hora</th>
+                    <th>Numero de poltronas</th>
+                    <th>Numero de poltronas reservadas</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +26,8 @@ Sessões
                         <td>{{ $ses->local }}</td>
                         <td>{{ $ses->data }}</td>
                         <td>{{ $ses->hora }}</td>
+                        <td>{{ $ses->numero_de_poltronas }}</td>
+                        <td>{{ $ses->poltronas_reservadas }}</td>
 
                         <td>
                             <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a>

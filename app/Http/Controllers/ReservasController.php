@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Reservas;
 use App\Sessoes;
+use Auth;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Http\Requests\ReservasRequest;
 use App\Http\Controllers\SessoesController;
 
@@ -23,12 +23,17 @@ class ReservasController extends Controller
 
     public function store(ReservasRequest $request) {
         $novo_reserva = $request->all();
-        $sessao = SessoesController::find($novo_reserva->sessao->id);
-        $sessao->poltronas_reservadas = collect(
-            $sessao->poltronas_reservadas->toArray())
-            ->union($novo_reserva->user->id->toArray());
-        SessoesController::update($sessao->all());
-    	Reservas::create($novo_reserva);
+
+        $sessao = Sessoes::find($novo_reserva["sessao_id"]);
+        $count = $sessao->poltronas_reservadas;
+        $sessao->poltronas_reservadas = ++$count;
+        $sessao->save();
+
+        $user = Auth::user();
+        $novo_reserva["user_id"] = $user->id;
+        $novo_reserva["sessao_id"] = $sessao->id;
+        
+        Reservas::create($novo_reserva);
         return redirect()->route('reservas');
     }
 

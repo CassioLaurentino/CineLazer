@@ -41,6 +41,11 @@ Cadastro de Sessão
         </div>
 
         <div class="form-group">
+            {!! Form::label('numero_de_poltronas', 'Numero de poltronas:') !!}
+            {!! Form::number('numero_de_poltronas', null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Criar Sessão', ['class'=>'btn btn-primary']) !!}
         </div>
 

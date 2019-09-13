@@ -18,7 +18,7 @@ Reservas
             <tbody>
                 @foreach($reservas as $res)
                     <tr>
-                        <td>{{ $res->sessao->atracao . ", " . $res->sessao->data . ":" . $res->sessao->hora ." " . $res->sessao->local }}</td>
+                        <td>{{ $res->sessao->atracao->nome . ", " . $res->sessao->data . ":" . $res->sessao->hora . ", " . $res->sessao->local }}</td>
                         <td>{{ $res->poltrona }}</td>
 
                         <td>
