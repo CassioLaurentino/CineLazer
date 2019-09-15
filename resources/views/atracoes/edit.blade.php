@@ -16,16 +16,16 @@ Edição de Atração
             </ul>
         @endif
         
-        {!! Form::open(['route'=>["atracoes.update", $atracao->id], 'method'=>'put']) !!}
+        {!! Form::open(['route'=>["atracoes.update", $atracoes->id], 'method'=>'put']) !!}
 
         <div class="form-group">
             {!! Form::label('nome', 'Nome:') !!}
-            {!! Form::text('nome', $atracao->nome, ['class'=>'form-control']) !!}
+            {!! Form::text('nome', $atracoes->nome, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('descricao', 'Descrição:') !!}
-            {!! Form::textarea('descricao', $atracao->descricao, ['class'=>'form-control']) !!}
+            {!! Form::textarea('descricao', $atracoes->descricao, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
@@ -37,7 +37,7 @@ Edição de Atração
         
         <div class="form-group">
             {!! Form::label('faixa_etaria', 'Faixa Etária:') !!}
-            {!! Form::number('faixa_etaria', $atracao->faixa_etaria, ['class'=>'form-control']) !!}
+            {!! Form::number('faixa_etaria', $atracoes->faixa_etaria, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

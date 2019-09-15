@@ -22,14 +22,24 @@ class ReservasController extends Controller
     }
 
     public function store(ReservasRequest $request) {
+        $user = Auth::user();
         $novo_reserva = $request->all();
 
         $sessao = Sessoes::find($novo_reserva["sessao_id"]);
         $count = $sessao->poltronas_reservadas;
         $sessao->poltronas_reservadas = ++$count;
+        
+        $n_pol = $sessao->numero_de_poltronas;
+
+        if ($n_pol[$novo_reserva["poltrona"]] != null) {
+            return view('reservas.create');
+        }
+
+        $n_pol[$novo_reserva["poltrona"]] = $user->id;
+        $sessao->numero_de_poltronas = $n_pol;
+
         $sessao->save();
 
-        $user = Auth::user();
         $novo_reserva["user_id"] = $user->id;
         $novo_reserva["sessao_id"] = $sessao->id;
         

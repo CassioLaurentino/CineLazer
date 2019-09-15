@@ -16,7 +16,7 @@ Edição de Sessão
             </ul>
         @endif
         
-        {!! Form::open(['route'=>["sessoes.update", $sessao->id], 'method'=>'put']) !!}
+        {!! Form::open(['route'=>["sessoes.update", $sessoes->id], 'method'=>'put']) !!}
 
         <div class="form-group">
             {!! Form::label('atracao_id', 'Atração:') !!}
@@ -27,22 +27,17 @@ Edição de Sessão
 
         <div class="form-group">
             {!! Form::label('local', 'Local:') !!}
-            {!! Form::text('local', $sessao->nome, ['class'=>'form-control']) !!}
+            {!! Form::text('local', $sessoes->nome, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::label('data', 'Data:') !!}
-            {!! Form::date('data', $sessao->data, ['class'=>'form-control']) !!}
+            {!! Form::date('data', $sessoes->data, ['class'=>'form-control']) !!}
         </div>
         
         <div class="form-group">
             {!! Form::label('hora', 'Hora:') !!}
-            {!! Form::text('hora', $sessao->hora, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group">
-            {!! Form::label('numero_de_poltronas', 'Numero de poltronas:') !!}
-            {!! Form::number('numero_de_poltronas', $sessao->numero_de_poltronas, ['class'=>'form-control']) !!}
+            {!! Form::text('hora', $sessoes->hora, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

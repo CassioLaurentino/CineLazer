@@ -11,4 +11,8 @@ class Sessoes extends Model
     public function atracao() {
         return $this->belongsTo('App\Atracoes');
     }
+
+    protected $casts = [
+        'numero_de_poltronas' => 'array'
+    ];
 }
