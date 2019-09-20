@@ -1,27 +1,13 @@
 @extends('adminlte::page')
 
 @section('contentheader_title')
-Reservas
+Cadastro de Reserva
 @endsection
 
-@push('styles')
-    <link href="{{ asset('css/sala.css') }}" rel="stylesheet">
-@endpush
-
-@push('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/sala.js') }}"></script>
-@endpush
-
-@stack('styles')
-@stack('scripts')
-
 @section('content')
-    {{ $reservas->sessao }}
-    <div class="grid-container">
+    <div class="container-fluid">
+        <h1>Novo Reserva</h1>
 
-    </div>
-    <!-- <div class="container-fluid">
         @if($errors->any())
             <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -49,5 +35,6 @@ Reservas
         </div>
 
         {!! Form::close() !!}
-    </div> -->
+    </div>
 @endsection
+

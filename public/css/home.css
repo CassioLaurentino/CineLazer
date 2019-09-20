@@ -1,0 +1,21 @@
+/*Inicio CSS banner*/
+.header-text {
+    top: 20%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #fff;
+}
+
+.header-text h2 {
+    font-size: 40px;
+}
+
+.header-text h2 span {
+    background-color: #2980b9;
+}
+
+.header-text h3 span {
+	background-color: #000;
+	/*Final CSS banner*/
+}

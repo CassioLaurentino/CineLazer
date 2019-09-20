@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Sessoes extends Model
@@ -15,4 +16,10 @@ class Sessoes extends Model
     protected $casts = [
         'numero_de_poltronas' => 'array'
     ];
+
+    use Searchable;
+    public function searchableAs()
+    {
+        return 'sessoes_index';
+    }
 }

@@ -6,8 +6,8 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jogo das Cadeias - Projeto Rio Passo Fundo">
-    <meta name="author" content="Fábrica de Software UPF">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <title>Título do Projeto</title>
 
@@ -30,7 +30,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><b>Nome do Projeto</b></a>
+                <a class="navbar-brand" href="#"><b>CineLazer</b></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

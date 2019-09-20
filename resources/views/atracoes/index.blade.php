@@ -11,6 +11,7 @@ Atrações
         <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Nome</th>
                     <th>Descricao</th>
                     <th>Tipo</th>
@@ -20,6 +21,7 @@ Atrações
             <tbody>
                 @foreach($atracoes as $atr)
                     <tr>
+                        <td>{{ $atr->id }}</td>
                         <td>{{ $atr->nome }}</td>
                         <td>{{ $atr->descricao }}</td>
                         <td>{{ $atr->tipo->nome }}</td>

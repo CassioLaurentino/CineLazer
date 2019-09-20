@@ -1,12 +1,12 @@
 <!-- Main Header -->
 <header class="main-header">
-
+<div>teste</div>
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>R</b>PF</span>
+        <span class="logo-mini"><b>C</b>ZR</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Rio</b>Passo Fundo</span>
+        <span class="logo-lg"><b>Cine</b>Lazer</span>
     </a>
 
     <!-- Header Navbar -->

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Reservas;
+use App\Atracoes;
 use App\Sessoes;
 use Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
-use App\Http\Controllers\SessoesController;
 
 class ReservasController extends Controller
 {
@@ -17,8 +17,15 @@ class ReservasController extends Controller
         return view('reservas.index', ['reservas'=>$reservas]);
     }
 
-    public function create() {
-        return view('reservas.create');
+    public function reserve() {
+        return view('reservas.reserve');
+    }
+
+    public function create($id) {
+        $atracao = Atracoes::find($id);
+        $sessoes = Sessoes::search('sessoes')->where('atracao_id', $atracao->id)->get();
+        print_r($sessoes); exit;
+        return view('reservas.create', compact('sessoes'));
     }
 
     public function store(ReservasRequest $request) {

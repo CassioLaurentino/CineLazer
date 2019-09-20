@@ -29,6 +29,6 @@ Reservas
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('reservas.create') }}" class="btn-sm btn-info">Novo</a>
+        <a href="{{ route('home') }}" class="btn-sm btn-info">Fazer uma nova reserva!</a>
     </div>
 @endsection
