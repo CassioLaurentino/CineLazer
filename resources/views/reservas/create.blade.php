@@ -9,6 +9,10 @@ Reservas
 @endpush
 
 @push('scripts')
+    <script>    
+        var sessions = {!! json_encode($sessoes->toArray()) !!};
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/sala.js') }}"></script>
 @endpush
@@ -17,11 +21,8 @@ Reservas
 @stack('scripts')
 
 @section('content')
-    {{ $reservas->sessao }}
-    <div class="grid-container">
 
-    </div>
-    <!-- <div class="container-fluid">
+    <div class="container-fluid">
         @if($errors->any())
             <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -39,15 +40,24 @@ Reservas
                              ['class'=>'form-control']) !!}
         </div>
 
-        <div class="form-group">
+        {!! Form::label('poltrona', 'Selecione uma poltrona:') !!}
+        <div class="sala">
+            <p class="tela">TELA / PALCO</p>
+
+            <!-- Poltronas -->
+            <div class="grid-container"></div>
+        </div>
+        
+
+        <!-- <div class="form-group">
             {!! Form::label('poltrona', 'Poltrona:') !!}
             {!! Form::number('poltrona', null, ['class'=>'form-control']) !!}
-        </div>
+        </div> -->
 
         <div class="form-group">
             {!! Form::submit('Criar Reserva', ['class'=>'btn btn-primary']) !!}
         </div>
 
         {!! Form::close() !!}
-    </div> -->
+    </div>
 @endsection

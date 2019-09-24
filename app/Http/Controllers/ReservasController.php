@@ -22,10 +22,13 @@ class ReservasController extends Controller
     }
 
     public function create($id) {
-        $atracao = Atracoes::find($id);
-        $sessoes = Sessoes::search('sessoes')->where('atracao_id', $atracao->id)->get();
-        print_r($sessoes); exit;
-        return view('reservas.create', compact('sessoes'));
+        $sessoes = Sessoes::where('atracao_id', $id)->get()->first();
+
+        if ($sessoes == null) {
+            print_r("retornar saporra caralha"); exit;
+        }
+
+        return view('reservas.create')->with('sessoes', $sessoes);
     }
 
     public function store(ReservasRequest $request) {

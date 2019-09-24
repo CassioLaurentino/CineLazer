@@ -11,4 +11,8 @@ class Atracoes extends Model
     public function tipo() {
         return $this->belongsTo('App\Tipos');
     }
+
+    public function sessoes() {
+        return $this->hasMany('App\Sessoes');
+    }
 }
