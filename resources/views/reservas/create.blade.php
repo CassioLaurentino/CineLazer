@@ -9,8 +9,8 @@ Reservas
 @endpush
 
 @push('scripts')
-    <script>    
-        var sessions = {!! json_encode($sessoes->toArray()) !!};
+    <script>
+        var sessions = {!! \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->get() !!};
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -36,7 +36,7 @@ Reservas
         <div class="form-group">
             {!! Form::label('sessao_id', 'Sessão:') !!}
             {!! Form::select('sessao_id', 
-                             \App\Sessoes::orderBy('local')->pluck('local', 'id')->toArray(),null,
+                             \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->pluck('local', 'id')->toArray(),null,
                              ['class'=>'form-control']) !!}
         </div>
 
@@ -47,12 +47,8 @@ Reservas
             <!-- Poltronas -->
             <div class="grid-container"></div>
         </div>
-        
 
-        <!-- <div class="form-group">
-            {!! Form::label('poltrona', 'Poltrona:') !!}
-            {!! Form::number('poltrona', null, ['class'=>'form-control']) !!}
-        </div> -->
+        <input type="hidden" name="poltronas" id='poltronas'>
 
         <div class="form-group">
             {!! Form::submit('Criar Reserva', ['class'=>'btn btn-primary']) !!}

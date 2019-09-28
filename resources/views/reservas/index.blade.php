@@ -12,14 +12,14 @@ Reservas
             <thead>
                 <tr>
                     <th>Sessão</th>
-                    <th>Poltrona</th>
+                    <th>Poltronas</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($reservas as $res)
                     <tr>
                         <td>{{ $res->sessao->atracao->nome . ", " . $res->sessao->data . ":" . $res->sessao->hora . ", " . $res->sessao->local }}</td>
-                        <td>{{ $res->poltrona }}</td>
+                        <td>{!! preg_replace('/(\"|\[|])/', "", json_encode(array_values(array_filter($res->poltronas)))) !!}</td>
 
                         <td>
                             <a href="{{ route('reservas.edit', ['id'=>$res->id]) }}" class="btn-sm btn-success">Editar</a>

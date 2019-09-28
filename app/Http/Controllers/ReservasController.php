@@ -35,21 +35,27 @@ class ReservasController extends Controller
         $user = Auth::user();
         $novo_reserva = $request->all();
 
+        $poltronas = explode(',', $novo_reserva["poltronas"]);
         $sessao = Sessoes::find($novo_reserva["sessao_id"]);
-        $count = $sessao->poltronas_reservadas;
-        $sessao->poltronas_reservadas = ++$count;
-        
         $n_pol = $sessao->numero_de_poltronas;
 
-        if ($n_pol[$novo_reserva["poltrona"]] != null) {
-            return view('reservas.create');
+        foreach ($poltronas as $key => $value) { 
+            if ($value == null) {
+                continue;
+            }
+
+            if ($n_pol[$key] != null) {
+                return view('reservas.create');
+            }
+
+            $n_pol[$key] = $user->id;
         }
 
-        $n_pol[$novo_reserva["poltrona"]] = $user->id;
+        $sessao->poltronas_reservadas = count(array_filter($n_pol));
         $sessao->numero_de_poltronas = $n_pol;
-
         $sessao->save();
 
+        $novo_reserva["poltronas"] = $poltronas;
         $novo_reserva["user_id"] = $user->id;
         $novo_reserva["sessao_id"] = $sessao->id;
         
@@ -59,6 +65,8 @@ class ReservasController extends Controller
 
     public function destroy($id) {
         Reservas::find($id)->delete();
+
+
         return redirect()->route('reservas');
     }
 

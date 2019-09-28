@@ -1,22 +1,19 @@
-$('.grid-container').append('<div>', {
-    "class": '1'
+$(document).ready(function(){
+    populateScream(sessions[0]);
+    
+    $('#sessao_id').on('change',function(){
+        populateScream(sessions.find(x => x.id == $('#sessao_id').val()));
+    }); 
 });
 
-$(document).ready(function(){
+function populateScream(session) {
+    var poltronas = new Array()
     $max_columns = 15;
 
-    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    // grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    // grid-template-areas: ". . \31  . . \31 1 . ." ". . . \31 2 . . . ." ". . . . . . . ." ". . . . . . . ." ". . . . . . . .";
-
-    // .\31  { grid-area: \31 ; }
-
-    // .\31 1 { grid-area: \31 1; }
-
-    // .\31 2 { grid-area: \31 2; }
-
-    if (sessions.numero_de_poltronas.length > $max_columns) {
-        $numero_de_filas = sessions.numero_de_poltronas.length / $max_columns;
+    $('.grid-container div').remove();
+    
+    if (session.numero_de_poltronas.length > $max_columns) {
+        $numero_de_filas = session.numero_de_poltronas.length / $max_columns;
         $rows = '';
 
         for (let i = 0; i < $numero_de_filas; i++) {
@@ -31,7 +28,7 @@ $(document).ready(function(){
         $('.grid-container').css("grid-template-columns", $columns.slice(0,-1));
         $('.grid-container').css("grid-template-rows", $rows.slice(0,-1));
     } else {
-        $numero_de_colunas = sessions.numero_de_poltronas.length
+        $numero_de_colunas = session.numero_de_poltronas.length
         $columns = '';
         
         for (let i = 0; i < $numero_de_colunas; i++) {
@@ -42,8 +39,17 @@ $(document).ready(function(){
         $('.grid-container').css("grid-template-rows", '1fr');
     }
 
-    $.each(sessions.numero_de_poltronas, function( index, value ) {
+    $.each(session.numero_de_poltronas, function( index, value ) {
         $poltrona = index+1;
+
+        if (session.numero_de_poltronas.length == $poltrona) {
+            if (value != "") {
+                $('.'+index).attr('id', 'ocupado');
+            }
+            
+            return;
+        }
+
         $div = '<div class="'.concat($poltrona).concat('"></div>');
         $('.grid-container').append($div);
 
@@ -51,19 +57,20 @@ $(document).ready(function(){
         $('.'+$poltrona).attr('id', 'livre');
 
         if (value != "") {
-            $('.'+$poltrona).attr('id', 'ocupado');
+            $('.'+index).attr('id', 'ocupado');
         }
     });
 
     $('div#livre').click(function() {
         if (this.id == 'selecionado') {
-            console.log('dsfadfasdfa')
             $('.'+this.className).attr('id', 'livre');
+            delete poltronas[this.className];
+            $('#poltronas').attr('value', poltronas);
             return;
         }
 
-        // TODO calcular esforço para ter mais de uma poltrona por reserva
-        // $('div#selecionado').attr('id', 'livre');
         $('.'+this.className).attr('id', 'selecionado');
+        poltronas[this.className] = this.className;
+        $('#poltronas').attr('value', poltronas);
     });
-});
+}

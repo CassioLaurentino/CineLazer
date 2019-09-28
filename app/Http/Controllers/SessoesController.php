@@ -22,7 +22,7 @@ class SessoesController extends Controller
     public function store(SessoesRequest $request) {
         $novo_sessao = $request->all();
         
-        $novo_sessao["numero_de_poltronas"] = array_fill(0, $novo_sessao["numero_de_poltronas"], "");
+        $novo_sessao["numero_de_poltronas"] = array_fill(0, $novo_sessao["numero_de_poltronas"]+1, "");
 
         //print_r($novo_sessao); exit;
 
