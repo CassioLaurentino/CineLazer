@@ -41,6 +41,11 @@ Cadastro de Atração
         </div>
 
         <div class="form-group">
+            {!! Form::label('cartaz', 'Cartaz:') !!}
+            {!! Form::file('cartaz') !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Criar Atração', ['class'=>'btn btn-primary']) !!}
         </div>
 

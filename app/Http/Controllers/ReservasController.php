@@ -64,9 +64,13 @@ class ReservasController extends Controller
     }
 
     public function destroy($id) {
-        Reservas::find($id)->delete();
+        $reserva = Reservas::find($id);
 
+        $poltronas = explode(',', $reserva->poltronas);
+        $sessao = Sessoes::find($reserva->sessao_id);
+        $n_pol = $sessao->numero_de_poltronas;
 
+        $reserva->delete();
         return redirect()->route('reservas');
     }
 
