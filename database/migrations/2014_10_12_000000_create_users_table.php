@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cpf')->unique()->nullable();
             $table->boolean('admin')->default(0);
+            $table->string('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

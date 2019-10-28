@@ -20,6 +20,7 @@ class CreateAtracoesTable extends Migration
             $table->integer('faixa_etaria');
             $table->integer('tipo_id')->unsigned();
             $table->foreign('tipo_id')->references('id')->on('tipos');
+            $table->string('cartaz')->nullable();
             $table->timestamps();
         });
     }

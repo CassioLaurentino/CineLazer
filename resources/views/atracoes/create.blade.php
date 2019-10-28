@@ -16,7 +16,7 @@ Cadastro de Atração
             </ul>
         @endif
         
-        {!! Form::open(['route'=>'atracoes.store']) !!}
+        {!! Form::open(['route'=>'atracoes.store', 'files' => true]) !!}
 
         <div class="form-group">
             {!! Form::label('nome', 'Nome:') !!}

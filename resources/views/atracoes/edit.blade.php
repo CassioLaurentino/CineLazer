@@ -16,7 +16,7 @@ Edição de Atração
             </ul>
         @endif
         
-        {!! Form::open(['route'=>["atracoes.update", $atracoes->id], 'method'=>'put']) !!}
+        {!! Form::open(['route'=>["atracoes.update", $atracoes->id], 'method'=>'put', 'files' => true]) !!}
 
         <div class="form-group">
             {!! Form::label('nome', 'Nome:') !!}

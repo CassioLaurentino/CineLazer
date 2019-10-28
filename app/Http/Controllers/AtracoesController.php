@@ -19,10 +19,22 @@ class AtracoesController extends Controller
     }
 
     public function store(AtracoesRequest $request) {
-    	$novo_atracao = $request->all();
-    	Atracoes::create($novo_atracao);
-
+        $novo_atracao = $request->all();
+        $atracao = Atracoes::create($novo_atracao);   
+        $this->storeCartaz($atracao);
         return redirect()->route('atracoes');
+    }
+
+    public function storeCartaz(Atracoes $atracao) {
+        $cartaz = 'no_photo.png';
+
+        if (request()->has('cartaz')) {
+            $cartaz = request()->cartaz->store('cartazes', 'public');
+        }
+
+        $atracao->update([
+            'cartaz' => $cartaz,
+        ]);
     }
 
     public function destroy($id) {
@@ -36,7 +48,8 @@ class AtracoesController extends Controller
     }
 
     public function update(AtracoesRequest $request, $id) {
-        Atracoes::find($id)->update($request->all());
+        $atracao = Atracoes::find($id)->update($request->all());
+        $this->storeCartaz($atracao);
         return redirect()->route('atracoes');    
     }
 }

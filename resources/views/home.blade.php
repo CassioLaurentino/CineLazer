@@ -23,7 +23,7 @@
                         @foreach($atracoes as $atr)
                             <div class="col-sm-6 col-md-3">
                                 <div class="thumbnail">
-                                    <a href="{{ route('reservas.create', ['id'=>$atr->id]) }}"><img src="img/PC/witcher3.jpg" alt="{{ $atr->nome }}"></a>
+                                    <a href="{{ route('reservas.create', ['id'=>$atr->id]) }}"><img src="{{ asset('storage/' . $atr->cartaz) }}" alt="{{ $atr->nome }}"></a>
                                     
                                     <div class="caption text-center">
                                     <h3>{{ $atr->nome }}</h3>
