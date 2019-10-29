@@ -24,8 +24,8 @@ class AtracoesRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|max:50',
-            'descricao' => 'required|max:250',
+            'nome' => 'required|min:2|max:100',
+            'descricao' => 'required|min:2|max:250',
             'tipo_id' => 'required',
             'faixa_etaria' => 'required|numeric|max:21',
             'cartaz' => 'file|image|max:5000',

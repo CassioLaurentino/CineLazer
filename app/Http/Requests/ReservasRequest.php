@@ -24,7 +24,9 @@ class ReservasRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required',
+            'sessao_id' => 'required',
+            'poltronas' => 'required',
         ];
     }
 }

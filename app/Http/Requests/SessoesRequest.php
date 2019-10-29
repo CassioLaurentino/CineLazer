@@ -24,7 +24,11 @@ class SessoesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'local' => 'required|min:2|max:150',
+            'atracao_id' => 'required',
+            'data' => 'required|after:today',
+            'hora' => 'required',
+            'numero_de_poltronas' => 'required|numeric|max:601',
         ];
     }
 }
