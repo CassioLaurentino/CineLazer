@@ -6,6 +6,7 @@ use App\Atracoes;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AtracoesRequest;
+use Intervention\Image\Facades\Image;
 
 class AtracoesController extends Controller
 {
@@ -30,11 +31,16 @@ class AtracoesController extends Controller
 
         if (request()->has('cartaz')) {
             $cartaz = request()->cartaz->store('cartazes', 'public');
+        } elseif ($atracao->cartaz != null) {
+            return;
         }
 
         $atracao->update([
             'cartaz' => $cartaz,
         ]);
+
+        $image = Image::make(public_path('storage/'. $atracao->cartaz))->fit(500, 500);
+        $image->save();
     }
 
     public function destroy($id) {
@@ -48,7 +54,8 @@ class AtracoesController extends Controller
     }
 
     public function update(AtracoesRequest $request, $id) {
-        $atracao = Atracoes::find($id)->update($request->all());
+        $atracao = Atracoes::find($id);
+        $atracao->update($request->all());
         $this->storeCartaz($atracao);
         return redirect()->route('atracoes');    
     }

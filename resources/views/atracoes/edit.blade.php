@@ -41,6 +41,11 @@ Edição de Atração
         </div>
 
         <div class="form-group">
+            {!! Form::label('cartaz', 'Cartaz:') !!}
+            {!! Form::file('cartaz') !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Editar Atração', ['class'=>'btn btn-primary']) !!}
         </div>
 
