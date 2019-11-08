@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReservasRequest extends FormRequest
+class AccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class ReservasRequest extends FormRequest
     public function rules()
     {
         return [
-            'sessao_id' => 'required',
-            'poltronas' => 'required',
+            'name' => 'sometimes|min:2|max:255',
+            'cpf' => 'sometimes|min:11|max:14',
+            'profile_image' => 'file|image|max:5000',
         ];
     }
 }

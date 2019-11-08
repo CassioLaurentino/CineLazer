@@ -63,6 +63,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix'=>'atracoes', 'where'=>['id'=>'[0-9]+']], function() {
 	    Route::get("",             ['as' => 'atracoes',         'uses' => "AtracoesController@index"]);
 	});
+
+	Route::group(['prefix'=>'profile', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'profile',         'uses' => "AccountController@index"]);
+		Route::get("/edit",        ['as' => 'profile.edit',    'uses' => "AccountController@edit"]);
+		Route::put("/update",      ['as' => 'profile.update',  'uses' => "AccountController@update"]);
+	});
+
+	Route::group(['prefix'=>'change_password', 'where'=>['id'=>'[0-9]+']], function() {
+	    Route::get("",             ['as' => 'change_password',  'uses' => "SessoesController@index"]);
+	});
 	
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes

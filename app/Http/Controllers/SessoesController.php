@@ -24,8 +24,6 @@ class SessoesController extends Controller
         
         $novo_sessao["numero_de_poltronas"] = array_fill(0, $novo_sessao["numero_de_poltronas"]+1, "");
 
-        //print_r($novo_sessao); exit;
-
     	Sessoes::create($novo_sessao);
 
         return redirect()->route('sessoes');

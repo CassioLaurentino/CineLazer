@@ -2,10 +2,6 @@
 
 @section('title', 'CineLazer')
 
-@section('content_header')
-    <h1>Selecione a atração desejada</h1>
-@stop
-
 @push('styles')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @endpush
