@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	});
 	
     Route::group(['prefix'=>'tipos', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'tipos',         'uses' => "TiposController@index"]);
 	    Route::get("create",       ['as' => 'tipos.create',  'uses' => "TiposController@create"]);
 	    Route::get("{id}/destroy", ['as' => 'tipos.destroy', 'uses' => "TiposController@destroy"]);
 	    Route::get("{id}/edit",    ['as' => 'tipos.edit',    'uses' => "TiposController@edit"]);
@@ -47,17 +48,12 @@ Route::group(['middleware' => 'auth'], function () {
 	    Route::get("",             ['as' => 'reservas',         'uses' => "ReservasController@index"]);
 	    Route::get("{id}/create",  ['as' => 'reservas.create',  'uses' => "ReservasController@create"]);
 	    Route::get("{id}/destroy", ['as' => 'reservas.destroy', 'uses' => "ReservasController@destroy"]);
-	    Route::get("{id}/edit",    ['as' => 'reservas.edit',    'uses' => "ReservasController@edit"]);
 	    Route::put("{id}/update",  ['as' => 'reservas.update',  'uses' => "ReservasController@update"]);
 		Route::post("store",       ['as' => 'reservas.store',   'uses' => "ReservasController@store"]);
 	});
 
 	Route::group(['prefix'=>'sessoes', 'where'=>['id'=>'[0-9]+']], function() {
 	    Route::get("",             ['as' => 'sessoes',         'uses' => "SessoesController@index"]);
-	});
-	
-    Route::group(['prefix'=>'tipos', 'where'=>['id'=>'[0-9]+']], function() {
-	    Route::get("",             ['as' => 'tipos',         'uses' => "TiposController@index"]);
 	});
 
 	Route::group(['prefix'=>'atracoes', 'where'=>['id'=>'[0-9]+']], function() {

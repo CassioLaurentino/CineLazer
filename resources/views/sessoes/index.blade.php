@@ -28,15 +28,20 @@ Sessões
                         <td>{{ $ses->hora }}</td>
                         <td>{{ sizeof($ses->numero_de_poltronas)-1 }}</td>
                         <td>{{ $ses->poltronas_reservadas }}</td>
-
-                        <td>
-                            <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a>
-                            <a href="{{ route('sessoes.destroy', ['id'=>$ses->id]) }}" class="btn-sm btn-danger">Remover</a>
-                        </td>
+                        
+                        @can('admin_only')
+                            <td>
+                                <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a>
+                                <a href="{{ route('sessoes.destroy', ['id'=>$ses->id]) }}" class="btn-sm btn-danger">Remover</a>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('sessoes.create') }}" class="btn-sm btn-info">Novo</a>
+
+        @can('admin_only')
+            <a href="{{ route('sessoes.create') }}" class="btn-sm btn-info">Novo</a>
+        @endcan
     </div>
 @endsection

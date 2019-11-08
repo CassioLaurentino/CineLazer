@@ -22,7 +22,6 @@ Reservas
                         <td>{!! preg_replace('/(\"|\[|])/', "", json_encode(array_values(array_filter($res->poltronas)))) !!}</td>
 
                         <td>
-                            <a href="{{ route('reservas.edit', ['id'=>$res->id]) }}" class="btn-sm btn-success">Editar</a>
                             <a href="{{ route('reservas.destroy', ['id'=>$res->id]) }}" class="btn-sm btn-danger">Remover</a>
                         </td>
                     </tr>

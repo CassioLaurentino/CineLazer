@@ -134,6 +134,7 @@ return [
             'text'        => 'Tipos',
             'url'         => '/tipos',
             'icon'        => 'archive',
+            'can'         => 'admin_only',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
