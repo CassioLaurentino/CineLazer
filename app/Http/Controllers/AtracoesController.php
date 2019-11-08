@@ -10,6 +10,10 @@ use Intervention\Image\Facades\Image;
 
 class AtracoesController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $atracoes = Atracoes::all();
         return view('atracoes.index', ['atracoes'=>$atracoes]);

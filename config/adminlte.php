@@ -144,8 +144,8 @@ return [
             'icon' => 'user',
         ],
         [
-            'text' => 'Trocar a senha',
-            'url'  => '/change_password',
+            'text' => 'Troca de senha',
+            'url'  => '/changePassword',
             'icon' => 'lock',
         ],
     ],

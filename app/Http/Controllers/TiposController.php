@@ -9,6 +9,10 @@ use App\Http\Requests\TiposRequest;
 
 class TiposController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $tipos = Tipos::all();
         return view('tipos.index', ['tipos'=>$tipos]);

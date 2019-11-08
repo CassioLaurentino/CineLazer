@@ -70,8 +70,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put("/update",      ['as' => 'profile.update',  'uses' => "AccountController@update"]);
 	});
 
-	Route::group(['prefix'=>'change_password', 'where'=>['id'=>'[0-9]+']], function() {
-	    Route::get("",             ['as' => 'change_password',  'uses' => "SessoesController@index"]);
+	Route::group(['prefix'=>'changePassword', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'changePassword',  'uses' => "AccountController@changePasswordForm"]);
+		Route::post("/update",      ['as' => 'changePassword.update',  'uses' => "AccountController@changePassword"]);
 	});
 	
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.

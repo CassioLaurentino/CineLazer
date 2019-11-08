@@ -8,13 +8,13 @@
     <div class="container-fluid ">
         <h1>Minha Conta</h1>
 
-        <br><h3><label>Nome:</label></h3>
+        <hr><h3><label>Nome:</label></h3>
         {{ $user->name }}
         
-        <br><h3><label>CPF:</label></h3>
+        <hr><h3><label>CPF:</label></h3>
         <p id="cpf">{{ $user->cpf }}</p>
         
-        <br><h3><label>Imagem de Perfil:</label></h3>
+        <hr><h3><label>Imagem de Perfil:</label></h3>
 
         @if($user->profile_image)
             <img src="{{ asset('storage/' . $user->profile_image) }}" alt="{{ $user->name }}">

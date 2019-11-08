@@ -12,6 +12,10 @@ use App\Http\Requests\ReservasRequest;
 
 class ReservasController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $reservas = Reservas::all();
         return view('reservas.index', ['reservas'=>$reservas]);

@@ -10,6 +10,10 @@ use App\Http\Requests\SessoesRequest;
 
 class SessoesController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index() {
         $sessoes = Sessoes::all();
         return view('sessoes.index', ['sessoes'=>$sessoes]);

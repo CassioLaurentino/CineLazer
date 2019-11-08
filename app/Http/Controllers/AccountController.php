@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
+use Hash;
 use Redirect;
 
 use Illuminate\Http\Request;
@@ -12,6 +13,10 @@ use Intervention\Image\Facades\Image;
 
 class AccountController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $user = Auth::user();
         return view('minha_conta.index', ['user'=>$user]);
@@ -20,6 +25,10 @@ class AccountController extends Controller
     public function edit() {
         $user = Auth::user();
         return view('minha_conta.edit', compact('user'));
+    }
+
+    public function changePasswordForm(){
+        return view('auth.changepassword');
     }
 
     public function update(AccountRequest $request) {
@@ -60,8 +69,31 @@ class AccountController extends Controller
         $image = Image::make(public_path('storage/'. $user->profile_image))->fit(100, 100);
         $image->save();
     }
+    //Função a seguir não é de minha autoria. segue link -> https://github.com/5balloons/change-password-laravel/blob/master/app/Http/Controllers/HomeController.php
+    public function changePassword(Request $request){
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Sua senha atual é diferente da senha que voçê inseriu. Por favor, tente novamente.");
+        }
 
-    // Função a seguir não é d eminha autoria. segue link -> https://gist.github.com/rafael-neri/ab3e58803a08cb4def059fce4e3c0e40
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","Nova senha não pode ser igual a senha atual. Por favor, escolha uma senha diferente.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:6|confirmed',
+        ]);
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+        return redirect()->back()->with("success","Senha atualizada com sucesso!");
+    }
+
+    // Função a seguir não é de minha autoria. segue link -> https://gist.github.com/rafael-neri/ab3e58803a08cb4def059fce4e3c0e40
     public function validaCPF($cpf) {
  
         // Extrai somente os números
