@@ -70,7 +70,7 @@ function populateScream(session) {
         }
 
         $('.'+this.className).attr('id', 'selecionado');
-        poltronas[this.className] = this.className;
+        poltronas[this.className] = userId;
         $('#poltronas').attr('value', poltronas);
     });
 }

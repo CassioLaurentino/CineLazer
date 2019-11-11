@@ -59,7 +59,7 @@ class ReservasController extends Controller
         $sessao->numero_de_poltronas = $n_pol;
         $sessao->save();
 
-        $novo_reserva["poltronas"] = $poltronas;
+        $novo_reserva["poltronas"] = array_keys(array_filter($poltronas));
         $novo_reserva["user_id"] = $user->id;
         $novo_reserva["sessao_id"] = $sessao->id;
         
@@ -70,27 +70,26 @@ class ReservasController extends Controller
     public function destroy($id) {
         try {
             $reserva = Reservas::find($id);
-
+            
             $poltronas = array_filter($reserva->poltronas);
             $sessao = Sessoes::find($reserva->sessao_id);
             $n_pol = $sessao->numero_de_poltronas;
-
+            
             foreach ($poltronas as $key => $value) { 
                 if ($value == null) {
                     continue;
                 }
 
-                if ($n_pol[$key] == null) {
-                    continue;
-                }
-
-                $n_pol[$key] = null;
+                $n_pol[$value] = null;
             }
-
+            
             $sessao->poltronas_reservadas = $sessao->poltronas_reservadas - count($poltronas);
+            if ($sessao->poltronas_reservadas < 0) {
+                $sessao->poltronas_reservadas = 0;
+            }
             $sessao->numero_de_poltronas = $n_pol;
             $sessao->save();
-
+            
             $reserva->delete();
             $ret = array('status'=>'ok', 'msg'=>"null");
         } catch (\Illuminate\Database\QueryException $e) {

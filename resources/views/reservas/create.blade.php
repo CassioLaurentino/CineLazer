@@ -11,6 +11,7 @@ Reservas
 @push('scripts')
     <script>
         var sessions = {!! \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->get() !!};
+        var userId = {!! Auth::user()->id !!};
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
