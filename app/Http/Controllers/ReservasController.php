@@ -17,12 +17,8 @@ class ReservasController extends Controller
     }
     
     public function index() {
-        $reservas = Reservas::all();
+        $reservas = Reservas::where('user_id', Auth::user()->id)->get();
         return view('reservas.index', ['reservas'=>$reservas]);
-    }
-
-    public function reserve() {
-        return view('reservas.reserve');
     }
 
     public function create($id) {
