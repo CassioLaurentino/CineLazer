@@ -56,7 +56,7 @@ function populateScream(session) {
         // $('.'+$poltrona).css("grid-area", $poltrona);
         $('.'+$poltrona).attr('id', 'livre');
 
-        if (value != "") {
+        if (value != null && value != "") {
             $('.'+index).attr('id', 'ocupado');
         }
     });

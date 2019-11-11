@@ -44,17 +44,17 @@ class ReservasController extends Controller
         $n_pol = $sessao->numero_de_poltronas;
 
         foreach ($poltronas as $key => $value) { 
-            if ($value == null) {
+            if ($value == null || $value != $user->id) {
                 continue;
             }
 
             if ($n_pol[$key] != null) {
                 return view('reservas.create');
-            }
+            }   
 
             $n_pol[$key] = $user->id;
         }
-
+        
         $sessao->poltronas_reservadas = count(array_filter($n_pol));
         $sessao->numero_de_poltronas = $n_pol;
         $sessao->save();
@@ -68,14 +68,37 @@ class ReservasController extends Controller
     }
 
     public function destroy($id) {
-        $reserva = Reservas::find($id);
+        try {
+            $reserva = Reservas::find($id);
 
-        $poltronas = explode(',', $reserva->poltronas);
-        $sessao = Sessoes::find($reserva->sessao_id);
-        $n_pol = $sessao->numero_de_poltronas;
+            $poltronas = array_filter($reserva->poltronas);
+            $sessao = Sessoes::find($reserva->sessao_id);
+            $n_pol = $sessao->numero_de_poltronas;
 
-        $reserva->delete();
-        return redirect()->route('reservas');
+            foreach ($poltronas as $key => $value) { 
+                if ($value == null) {
+                    continue;
+                }
+
+                if ($n_pol[$key] == null) {
+                    continue;
+                }
+
+                $n_pol[$key] = null;
+            }
+
+            $sessao->poltronas_reservadas = $sessao->poltronas_reservadas - count($poltronas);
+            $sessao->numero_de_poltronas = $n_pol;
+            $sessao->save();
+
+            $reserva->delete();
+            $ret = array('status'=>'ok', 'msg'=>"null");
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>'erro', 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>'erro', 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit($id) {

@@ -4,6 +4,14 @@
 Reservas
 @endsection
 
+@section('table-delete')
+"reservas"
+@endsection
+
+@section('scripts')
+    @include('layouts.partials.scripts')
+@show
+
 @section('content')
     <div class="container-fluid ">
         <h1>Reservas</h1>
@@ -22,7 +30,7 @@ Reservas
                         <td>{!! preg_replace('/(\"|\[|])/', "", json_encode(array_values(array_filter($res->poltronas)))) !!}</td>
 
                         <td>
-                            <a href="{{ route('reservas.destroy', ['id'=>$res->id]) }}" class="btn-sm btn-danger">Remover</a>
+                            <a href="#" onClick="return ConfirmaExclusao({{$res->id}})" class="btn-sm btn-danger">Remover</a>
                         </td>
                     </tr>
                 @endforeach
