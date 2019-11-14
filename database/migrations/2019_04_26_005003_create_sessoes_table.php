@@ -17,7 +17,7 @@ class CreateSessoesTable extends Migration
             $table->bigIncrements('id');
             $table->string('local', 150);
             $table->date('data');
-            $table->string('hora')->nullable();
+            $table->time('hora');
             $table->json('numero_de_poltronas');
             $table->integer('poltronas_reservadas')->nullable();
             $table->integer('atracao_id')->unsigned();

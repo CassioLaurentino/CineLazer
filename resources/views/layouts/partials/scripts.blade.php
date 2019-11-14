@@ -52,8 +52,9 @@
 						).then(function(isConfirm) {
 								window.location.reload();
 						});
-	                }
-					else
+	                } else if (data.status == "erro_data") {
+						swal('Erro!', data.msg, 'error');
+	                } else
 						swal(
 							'Erro!',
 							'Ocorreram erros na exclusão. Entre em contato com o suporte.',

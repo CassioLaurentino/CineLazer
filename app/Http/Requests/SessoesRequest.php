@@ -27,7 +27,7 @@ class SessoesRequest extends FormRequest
             'local' => 'required|min:2|max:150',
             'atracao_id' => 'required',
             'data' => 'required|after:today',
-            'hora' => 'required',
+            'hora' => 'required|date_format:H:i',
             'numero_de_poltronas' => 'required|numeric|max:601',
         ];
     }

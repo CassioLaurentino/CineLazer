@@ -1,6 +1,6 @@
 <!-- Main Header -->
 <header class="main-header">
-<div>teste</div>
+<div></div>
     <!-- Logo -->
     <a href="{{ url('/home') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->

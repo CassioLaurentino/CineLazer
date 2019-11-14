@@ -9,6 +9,7 @@ use Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
+use Exception;
 
 class ReservasController extends Controller
 {
@@ -25,7 +26,7 @@ class ReservasController extends Controller
         $sessoes = Sessoes::where('atracao_id', $id)->get()->first();
 
         if ($sessoes == null) {
-            print_r("retornar saporra caralha"); exit;
+            return view('home', ['atracoes'=>Atracoes::all()]);
         }
 
         return view('reservas.create')->with('sessoes', $sessoes);
@@ -63,12 +64,14 @@ class ReservasController extends Controller
         return redirect()->route('reservas');
     }
 
-    public function destroy($id) {
+    public function destroy($id) {        
         try {
             $reserva = Reservas::find($id);
-            
             $poltronas = array_filter($reserva->poltronas);
             $sessao = Sessoes::find($reserva->sessao_id);
+            
+            $this->calulateDateRange($sessao);
+            
             $n_pol = $sessao->numero_de_poltronas;
             
             foreach ($poltronas as $key => $value) { 
@@ -92,6 +95,8 @@ class ReservasController extends Controller
             $ret = array('status'=>'erro', 'msg'=>$e->getMessage());
         } catch (\PDOException $e) {
             $ret = array('status'=>'erro', 'msg'=>$e->getMessage());
+        } catch (\Exception $e) {
+            $ret = array('status'=>'erro_data', 'msg'=>$e->getMessage());
         }
         return $ret;
     }
@@ -104,5 +109,20 @@ class ReservasController extends Controller
     public function update(ReservasRequest $request, $id) {
         Reservas::find($id)->update($request->all());
         return redirect()->route('reservas');    
+    }
+
+    public function calulateDateRange(Sessoes $sessao) {
+        $data = $sessao->data;
+        $hora = $sessao->hora;
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $current_date = date('Y-m-d H:i', time());
+
+        $combined_date_and_time = $data . ' ' . $hora;
+        $date_to_cancel = date('Y-m-d H:i', strtotime($combined_date_and_time . '-1 day'));
+
+        if ($date_to_cancel <= $current_date) {
+            throw new Exception('Desculpe, mas só é possível excluir uma reserva, com pelo menos 24 horas de antecedência!');
+        }
     }
 }
