@@ -27,6 +27,7 @@ class SessoesController extends Controller
         $novo_sessao = $request->all();
         
         $novo_sessao["numero_de_poltronas"] = array_fill(0, $novo_sessao["numero_de_poltronas"]+1, "");
+        $novo_sessao["display"] = $novo_sessao["local"] . ' ' . $novo_sessao["data"] . ' ' . $novo_sessao["hora"];
 
     	Sessoes::create($novo_sessao);
 

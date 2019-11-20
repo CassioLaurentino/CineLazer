@@ -37,7 +37,7 @@ Reservas
         <div class="form-group">
             {!! Form::label('sessao_id', 'Sessão:') !!}
             {!! Form::select('sessao_id', 
-                             \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->pluck('local', 'id')->toArray(),null,
+                             \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->pluck('display', 'id')->toArray(),null,
                              ['class'=>'form-control']) !!}
         </div>
 

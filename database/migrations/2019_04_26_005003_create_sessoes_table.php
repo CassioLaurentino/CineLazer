@@ -19,6 +19,7 @@ class CreateSessoesTable extends Migration
             $table->date('data');
             $table->time('hora');
             $table->json('numero_de_poltronas');
+            $table->string('display', 255);
             $table->integer('poltronas_reservadas')->nullable();
             $table->integer('atracao_id')->unsigned();
             $table->foreign('atracao_id')->references('id')->on('atracoes');

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sessoes extends Model
 {
-    protected $fillable = ['local', 'atracao_id', 'data', 'hora', 'numero_de_poltronas'];
+    protected $fillable = ['local', 'atracao_id', 'data', 'hora', 'numero_de_poltronas', 'display'];
 
     public function atracao() {
         return $this->belongsTo('App\Atracoes');

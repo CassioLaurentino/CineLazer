@@ -24,7 +24,7 @@ class ReservasController extends Controller
 
     public function create($id) {
         $sessoes = Sessoes::where('atracao_id', $id)->get()->first();
-
+ 
         if ($sessoes == null) {
             return view('home', ['atracoes'=>Atracoes::all()]);
         }
