@@ -39,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
                 $event->menu->add('FERRAMENTAS ADMINISTRATIVAS');
                 $event->menu->add([
                     'text' => 'DashBoards',
-                    'url'  => '/dashbord',
+                    'url'  => '/dashboard',
                     'icon' => 'bar-chart',
                     'can'  => 'admin_only',
                 ]);

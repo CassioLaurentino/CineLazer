@@ -40,6 +40,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	    Route::put("{id}/update",  ['as' => 'atracoes.update',  'uses' => "AtracoesController@update"]);
 	    Route::post("store",       ['as' => 'atracoes.store',   'uses' => "AtracoesController@store"]);
 	});
+
+	Route::group(['prefix'=>'dashboard', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'dashboard',        'uses' => "AdminController@dashboard"]);
+	});
 });
 
 Route::group(['middleware' => 'auth'], function () {
