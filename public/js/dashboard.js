@@ -31,6 +31,42 @@ $(function () {
     ]
   }
 
+  var config = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: [
+          Math.round(Math.random() * 100),
+          Math.round(Math.random() * 100),
+          Math.round(Math.random() * 100),
+          Math.round(Math.random() * 100),
+          Math.round(Math.random() * 100),
+          Math.round(Math.random() * 100),
+        ],
+        backgroundColor: [
+          '#d2d6de',
+          '#3c8dbc',
+          '#00c0ef',
+          '#f39c12',
+          '#f56954',
+          '#00a65a',
+        ],
+        label: 'Dataset 1'
+      }],
+      labels: [
+        'Red',
+        'Orange',
+        'Yellow',
+        'Green',
+        'Blue',
+        'piroca'
+      ]
+    },
+    options: {
+      responsive: true
+    }
+  };
+
   //-------------
   //- BAR CHART -
   //-------------
@@ -48,6 +84,9 @@ $(function () {
         },
       }
     });
+    
+    var pieChart = $('#pieChart').get(0).getContext('2d')
+    window.myPie = new Chart(pieChart, config);
 
   };
 

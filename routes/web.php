@@ -44,6 +44,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::group(['prefix'=>'dashboard', 'where'=>['id'=>'[0-9]+']], function() {
 		Route::get("",             ['as' => 'dashboard',        'uses' => "AdminController@dashboard"]);
 	});
+
+	Route::group(['prefix'=>'relatorios', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'relatorios',        'uses' => "ReportController@index"]);
+	});
 });
 
 Route::group(['middleware' => 'auth'], function () {
