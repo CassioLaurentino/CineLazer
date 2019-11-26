@@ -6,10 +6,10 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<queryString>
-		<![CDATA[SELECT display,
-	poltronas_reservadas,
-    json_array_length(numero_de_poltronas) - 1 as numero_de_poltronas
-FROM sessoes]]>
+		<![CDATA[ SELECT display,
+     poltronas_reservadas,
+     json_array_length(numero_de_poltronas) - 1 as numero_de_poltronas
+ FROM sessoes]]>
 	</queryString>
 	<field name="display" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="display"/>
@@ -21,7 +21,6 @@ FROM sessoes]]>
 	</field>
 	<field name="numero_de_poltronas" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="numero_de_poltronas"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="sessoes"/>
 	</field>
 	<background>
 		<band/>
@@ -33,14 +32,14 @@ FROM sessoes]]>
 				<staticText>
 					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="1b7ad41d-077b-4e90-b4e1-48d21e8eebe3"/>
 					<textElement>
-						<font size="34" isBold="true"/>
+						<font fontName="DejaVu Sans" size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Sessões]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b17f1a19-bed8-4afa-bb97-5cdf665765af"/>
 					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
+						<font fontName="DejaVu Sans" size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Relatório de poltronas]]></text>
 				</staticText>
@@ -68,6 +67,9 @@ FROM sessoes]]>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<text><![CDATA[Sessão]]></text>
 			</staticText>
 			<textField>
@@ -76,7 +78,7 @@ FROM sessoes]]>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{poltronas_reservadas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{poltronas_reservadas} == null ? 0 : $F{poltronas_reservadas}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="355" y="5" width="200" height="30" uuid="36da3a42-8016-4a1f-adbf-b4fd2bc8c5a7">
@@ -85,6 +87,9 @@ FROM sessoes]]>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
 				<text><![CDATA[Reservadas / Disponiveis]]></text>
 			</staticText>
 			<textField>
@@ -93,7 +98,7 @@ FROM sessoes]]>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{numero_de_poltronas} - $F{poltronas_reservadas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{numero_de_poltronas}  == null || $F{poltronas_reservadas} == null ? 0 : $F{numero_de_poltronas}-$F{poltronas_reservadas}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
