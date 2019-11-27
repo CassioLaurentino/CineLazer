@@ -8,7 +8,8 @@ Relatórios
     <div class="container-fluid ">
         <h1>Relatórios</h1>
 
-        <a href="{{ route('report.poltronas') }}" class="btn-sm btn-success">Visualizar relatório</a>    
+        <a href="{{ route('report.sessoes') }}" class="btn-sm btn-success">Sessoes</a>
+        <a href="{{ route('report.reservas_mensal') }}" class="btn-sm btn-success">Reservas mensal</a>
     </div>
 @endsection
 

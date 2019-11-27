@@ -22,26 +22,17 @@ class ReportController extends Controller {
         ];
     }
 
-    public function poltronas() {
-        $report = '/reports/Poltronas_disponiveis_por_sessao.jrxml';
-        $file_name = 'poltronas';
-
-        $sessoes = DB::table('sessoes')->select('display', 'poltronas_reservadas', 'numero_de_poltronas')->get();
-
+    public function sessoes() {
+        $report = '/reports/Sessoes.jrxml';
+        $file_name = 'sessoes';
         $params = array();
-        foreach ($sessoes as $key => $value) {
-            $poltronas = explode(',', $value->numero_de_poltronas);
-            $value->numero_de_poltronas = sizeof($poltronas) - 1;
+        return $this->process($report, $file_name, $params);
+    }
 
-            // $params
-        }
-
-        // SELECT display,
-	    //     poltronas_reservadas,
-        //     json_array_length(numero_de_poltronas) - 1 as numero_de_poltronas
-        // FROM sessoes
-
-        // var_dump($params); exit;
+    public function reservas_mensal() {
+        $report = '/reports/Reservas_mensal.jrxml';
+        $file_name = 'reservas_mensal';
+        $params = array();
         return $this->process($report, $file_name, $params);
     }
 
@@ -55,7 +46,7 @@ class ReportController extends Controller {
             $file_path,
             $output,
             ['pdf'],
-            [],
+            $params,
             $this->getDatabaseConfig()
         )->execute();
         $file = $output . '.pdf';
