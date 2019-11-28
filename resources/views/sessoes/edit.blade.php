@@ -6,7 +6,7 @@ Edição de Sessão
 
 @section('content')
     <div class="container-fluid">
-        <h1>Editando Sessão: {{$sessoes->id}}</h1>
+        <h1>Editando Sessão: {{$sessoes->display}}</h1>
 
         @if($errors->any())
             <ul class="alert alert-danger">
@@ -37,7 +37,7 @@ Edição de Sessão
         
         <div class="form-group">
             {!! Form::label('hora', 'Hora:') !!}
-            {!! Form::text('hora', $sessoes->hora, ['class'=>'form-control']) !!}
+            {!! Form::text('hora', date('H:i', strtotime($sessoes->hora)), ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

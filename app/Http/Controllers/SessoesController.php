@@ -19,7 +19,7 @@ class SessoesController extends Controller
     
     public function index() {
         $sessoes = Sessoes::all();
-        return view('sessoes.index', ['sessoes'=>$sessoes]);
+        return view('sessoes.index', ['sessoes'=>$sessoes, 'status'=>'success']);
     }
 
     public function create() {
@@ -31,7 +31,8 @@ class SessoesController extends Controller
 
         $sala = Salas::find($novo_sessao["sala_id"]);
         $novo_sessao["numero_de_poltronas"] = array_fill(0, $sala->numero_de_poltronas+1, "");
-        $novo_sessao["display"] = $novo_sessao["local"] . ' ' . $novo_sessao["data"] . ' ' . $novo_sessao["hora"];
+        $novo_sessao["data"] = date('d-m-Y', strtotime($novo_sessao["data"]));
+        $novo_sessao["display"] = $novo_sessao["local"] . ' ' . date('d-m-Y', strtotime($novo_sessao["data"])) . ' ' . $novo_sessao["hora"];
 
     	Sessoes::create($novo_sessao);
 
@@ -52,6 +53,12 @@ class SessoesController extends Controller
 
     public function edit($id) {
         $sessoes = Sessoes::find($id);
+
+        if (Reservas::where('sessao_id', $sessoes->id)->get()->first() != null) {
+            $sessoes = Sessoes::all();
+            return view('sessoes.index', ['sessoes'=>$sessoes, 'status'=>'erro']);
+        }
+
         return view('sessoes.edit', compact('sessoes'));
     }
     
@@ -59,11 +66,15 @@ class SessoesController extends Controller
         $sessao = Sessoes::find($id);
         
         if (Reservas::where('sessao_id', $sessao->id)->get()->first() != null) {
-            return array('status'=>'erro_data', 'msg'=>'Desculpe, mas já existem reservas para esta sessão. Portanto não se pode altera-la!');
+            $sessoes = Sessoes::all();
+            return view('sessoes.index', ['sessoes'=>$sessoes, 'status'=>'erro']);
         }
         
         $sessao->update($request->all());
+        
         $sala = Salas::find($sessao->sala_id);
+        
+        $sessao->data = date('d-m-Y', strtotime($sessao->data));
         $sessao->numero_de_poltronas = array_fill(0, $sala->numero_de_poltronas+1, "");
         $sessao->save();
 

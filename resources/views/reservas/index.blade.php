@@ -26,11 +26,10 @@ Reservas
             <tbody>
                 @foreach($reservas as $res)
                     <tr>
-                        <td>{{ $res->sessao->atracao->nome . ", " . $res->sessao->data . ":" . $res->sessao->hora . ", " . $res->sessao->local }}</td>
+                        <td>{{ $res->sessao->display }}</td>
                         <td>{!! preg_replace('/(\"|\[|])/', "", json_encode(array_values(array_filter($res->poltronas)))) !!}</td>
 
                         <td>
-                            <a href="{{ route('reservas.destroy', ['id'=>$res->id]) }}" class="btn-sm btn-success">Editar</a>
                             <a href="#" onClick="return ConfirmaExclusao({{$res->id}})" class="btn-sm btn-danger">Remover</a>
                         </td>
                     </tr>

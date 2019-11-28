@@ -29,19 +29,21 @@ Sessões
                 </tr>
             </thead>
             <tbody>
+                @if ($status == "erro")
+                    <script> HandleException('Desculpe, mas já existem reservas para esta sessão. Portanto não se pode altera-la!') </script>
+                @endif
                 @foreach($sessoes as $ses)
                     <tr>
                         <td>{{ $ses->atracao->nome }}</td>
                         <td>{{ $ses->local }}</td>
-                        <td>{{ $ses->data }}</td>
+                        <td>{{ date('d-m-Y', strtotime($ses->data)) }}</td>
                         <td>{{ $ses->hora }}</td>
                         <td>{{ sizeof($ses->numero_de_poltronas)-1 }}</td>
                         <td>{{ $ses->poltronas_reservadas }}</td>
                         
                         @can('admin_only')
                             <td>
-                                <!-- <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a> -->
-                                <a href="#" onClick="return handleException({{$ses->id}})" class="btn-sm btn-success">Editar</a>
+                                <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a>
                                 <a href="#" onClick="return ConfirmaExclusao({{$ses->id}})" class="btn-sm btn-danger">Remover</a>
                             </td>
                         @endcan

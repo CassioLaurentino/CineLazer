@@ -116,10 +116,10 @@ class ReservasController extends Controller
         $hora = $sessao->hora;
 
         date_default_timezone_set('America/Sao_Paulo');
-        $current_date = date('Y-m-d H:i', time());
+        $current_date = date('d-m-Y H:i', time());
 
         $combined_date_and_time = $data . ' ' . $hora;
-        $date_to_cancel = date('Y-m-d H:i', strtotime($combined_date_and_time . '-1 day'));
+        $date_to_cancel = date('d-m-Y H:i', strtotime($combined_date_and_time . '-1 day'));
 
         if ($date_to_cancel <= $current_date) {
             throw new Exception('Desculpe, mas só é possível excluir uma reserva, com pelo menos 24 horas de antecedência!');
