@@ -35,18 +35,19 @@ html, body, .grid-container { height: 100%; margin: 0; }
 .grid-container {
   display: grid;
   grid-gap: 2rem;
-  width: 900px;
+  margin:0 auto;
+  width: max-content;
   height: max-content;
 }
 
 .sala {
-  padding-left: 125px;
+  margin:0 auto;
 }
 
 p.tela { 
   text-align: center;
-  margin-left: 275px;
-  margin-bottom: 100px;
+  margin:0 auto;
+  margin-bottom: 100px !important;
   width: 700px;
   height: 25px;
   background-color: gray;

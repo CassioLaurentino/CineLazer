@@ -11,6 +11,7 @@ Reservas
 @push('scripts')
     <script>
         var sessions = {!! \App\Sessoes::where('atracao_id', $sessoes->atracao->id)->get() !!};
+        var salas = {!! \App\Salas::all() !!};
         var userId = {!! Auth::user()->id !!};
     </script>
 
@@ -42,13 +43,19 @@ Reservas
         </div>
 
         {!! Form::label('poltrona', 'Selecione uma poltrona:') !!}
-        <div class="sala">
-            <p class="tela">TELA / PALCO</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-10 col-md-12">
+                    <div class="sala">
+                        <p class="tela">TELA / PALCO</p>
 
-            <!-- Poltronas -->
-            <div class="grid-container"></div>
+                        <!-- Poltronas -->
+                        <div class="grid-container"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-
+        
         <input type="hidden" name="poltronas" id='poltronas'>
 
         <div class="form-group">

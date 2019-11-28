@@ -41,6 +41,13 @@ Edição de Sessão
         </div>
 
         <div class="form-group">
+            {!! Form::label('sala_id', 'Sala:') !!}
+            {!! Form::select('sala_id', 
+                             \App\Salas::orderBy('nome')->pluck('nome', 'id')->toArray(),null,
+                             ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Editar Sessão', ['class'=>'btn btn-primary']) !!}
         </div>
 

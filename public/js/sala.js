@@ -6,9 +6,22 @@ $(document).ready(function(){
     }); 
 });
 
+function addSalaToSession(session){
+    if (session.colunas != null) {
+        return;
+    }
+    
+    salas.forEach(element => {
+        if (element.id == session.sala_id) {
+            session.colunas = element.colunas;
+        }
+    });
+}
+
 function populateScream(session) {
+    addSalaToSession(session);
     var poltronas = new Array()
-    $max_columns = 15;
+    $max_columns = session.colunas;
 
     $('.grid-container div').remove();
     

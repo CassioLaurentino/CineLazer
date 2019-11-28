@@ -41,8 +41,10 @@ Cadastro de Sessão
         </div>
 
         <div class="form-group">
-            {!! Form::label('numero_de_poltronas', 'Numero de poltronas:') !!}
-            {!! Form::number('numero_de_poltronas', null, ['class'=>'form-control']) !!}
+            {!! Form::label('sala_id', 'Sala:') !!}
+            {!! Form::select('sala_id', 
+                             \App\Salas::orderBy('nome')->pluck('nome', 'id')->toArray(),null,
+                             ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">

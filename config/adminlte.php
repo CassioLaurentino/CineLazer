@@ -110,6 +110,13 @@ return [
     'menu' => [
         'MENU',
         [
+            'text'        => 'Home',
+            'url'         => '/home',
+            'icon'        => 'home',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
             'text'        => 'Atrações',
             'url'         => '/atracoes',
             'icon'        => 'film',
@@ -134,6 +141,14 @@ return [
             'text'        => 'Tipos',
             'url'         => '/tipos',
             'icon'        => 'archive',
+            'can'         => 'admin_only',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Salas',
+            'url'         => '/salas',
+            'icon'        => 'building',
             'can'         => 'admin_only',
             // 'label'       => 4,
             // 'label_color' => 'success',

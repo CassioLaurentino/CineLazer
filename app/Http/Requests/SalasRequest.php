@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SessoesRequest extends FormRequest
+class SalasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class SessoesRequest extends FormRequest
     public function rules()
     {
         return [
-            'local' => 'required|min:2|max:150',
-            'atracao_id' => 'required',
-            'data' => 'required|after:today',
-            'hora' => 'required|date_format:H:i',
-            'sala_id' => 'required',
+            'nome' => 'required|min:2|max:150',
+            'colunas' => 'required|min:1|max:20',
+            'fileiras' => 'required|min:1|max:15',
         ];
     }
 }

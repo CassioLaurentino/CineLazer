@@ -41,6 +41,7 @@ Sessões
                         @can('admin_only')
                             <td>
                                 <!-- <a href="{{ route('sessoes.edit', ['id'=>$ses->id]) }}" class="btn-sm btn-success">Editar</a> -->
+                                <a href="#" onClick="return handleException({{$ses->id}})" class="btn-sm btn-success">Editar</a>
                                 <a href="#" onClick="return ConfirmaExclusao({{$ses->id}})" class="btn-sm btn-danger">Remover</a>
                             </td>
                         @endcan

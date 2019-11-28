@@ -23,6 +23,15 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	    Route::put("{id}/update",  ['as' => 'sessoes.update',  'uses' => "SessoesController@update"]);
 	    Route::post("store",       ['as' => 'sessoes.store',   'uses' => "SessoesController@store"]);
 	});
+
+	Route::group(['prefix'=>'salas', 'where'=>['id'=>'[0-9]+']], function() {
+		Route::get("",             ['as' => 'salas',         'uses' => "SalasController@index"]);
+	    Route::get("create",       ['as' => 'salas.create',  'uses' => "SalasController@create"]);
+	    Route::get("{id}/destroy", ['as' => 'salas.destroy', 'uses' => "SalasController@destroy"]);
+	    Route::get("{id}/edit",    ['as' => 'salas.edit',    'uses' => "SalasController@edit"]);
+	    Route::put("{id}/update",  ['as' => 'salas.update',  'uses' => "SalasController@update"]);
+	    Route::post("store",       ['as' => 'salas.store',   'uses' => "SalasController@store"]);
+	});
 	
     Route::group(['prefix'=>'tipos', 'where'=>['id'=>'[0-9]+']], function() {
 		Route::get("",             ['as' => 'tipos',         'uses' => "TiposController@index"]);
