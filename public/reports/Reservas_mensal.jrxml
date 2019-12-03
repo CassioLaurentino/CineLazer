@@ -3,11 +3,16 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d04854af-e429-419c-bc09-a217efa3c6b0">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<parameter name="STARTDATE" class="java.lang.String"/>
+	<parameter name="ENDDATE" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select to_char(created_at,'Mon') as mês,
        extract(year from created_at) as ano,
        count(id) as reservas
 from reservas
+WHERE
+      created_at >= to_date($P{STARTDATE},'YYYYMMDD')
+  AND created_at <  to_date($P{ENDDATE},'YYYYMMDD')
 group by 1,2]]>
 	</queryString>
 	<field name="mês" class="java.lang.String">
@@ -16,7 +21,7 @@ group by 1,2]]>
 	<field name="ano" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="ano"/>
 	</field>
-	<field name="reservas" class="java.lang.Integer">
+	<field name="reservas" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="reservas"/>
 	</field>
 	<background>
@@ -27,18 +32,23 @@ group by 1,2]]>
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="eaa36b29-61e9-4f3b-a7c0-984f0eb6444d"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="488797eb-76e4-4f3f-9471-84538e07ec40"/>
+					<reportElement x="20" y="20" width="500" height="43" forecolor="#FFFFFF" uuid="488797eb-76e4-4f3f-9471-84538e07ec40">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[Reservas Mensais]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="3e16574a-f6fc-48ef-afa0-68673c9de029"/>
+					<reportElement x="370" y="43" width="220" height="20" forecolor="#FFFFFF" uuid="3e16574a-f6fc-48ef-afa0-68673c9de029">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Numero de reservas por mês]]></text>
 				</staticText>
 			</frame>
 		</band>

@@ -59,8 +59,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	});
 
 	Route::group(['prefix'=>'report', 'where'=>['id'=>'[0-9]+']], function() {
-		Route::get("/sessoes",             ['as' => 'report.sessoes',        'uses' => "ReportController@sessoes"]);
-		Route::get("/reservas_mensal",             ['as' => 'report.reservas_mensal', 'uses' => "ReportController@reservas_mensal"]);
+		Route::post("/sessoes",             ['as' => 'report.sessoes',        'uses' => "ReportController@sessoes"]);
+		Route::post("/reservas_mensal",             ['as' => 'report.reservas_mensal', 'uses' => "ReportController@reservas_mensal"]);
 	});
 });
 

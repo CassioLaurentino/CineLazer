@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReportsRequest;
 use JasperPHP\JasperPHP;
 use App\Sessoes;
 
@@ -22,17 +23,17 @@ class ReportController extends Controller {
         ];
     }
 
-    public function sessoes() {
+    public function sessoes(ReportsRequest $request) {
         $report = '/reports/Sessoes.jrxml';
         $file_name = 'sessoes';
-        $params = array();
+        $params = array('STARTDATE' =>  date('Ymd', strtotime($request['data_inicial'])), 'ENDDATE' => date('Ymd', strtotime($request['data_final'])));
         return $this->process($report, $file_name, $params);
     }
 
-    public function reservas_mensal() {
+    public function reservas_mensal(ReportsRequest $request) {
         $report = '/reports/Reservas_mensal.jrxml';
         $file_name = 'reservas_mensal';
-        $params = array();
+        $params = array('STARTDATE' =>  date('Ymd', strtotime($request['data_inicial'])), 'ENDDATE' => date('Ymd', strtotime($request['data_final'])));
         return $this->process($report, $file_name, $params);
     }
 
