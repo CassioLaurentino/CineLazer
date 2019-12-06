@@ -6,7 +6,7 @@ use App\Reservas;
 use App\Atracoes;
 use App\Sessoes;
 use Auth;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservasRequest;
 use Exception;
@@ -88,7 +88,11 @@ class ReservasController extends Controller
             }
             $sessao->numero_de_poltronas = $n_pol;
             $sessao->save();
-            
+
+            DB::table('reservas_historico')->insert(
+                ['reserva_id' => $reserva->id, 'created_at' => date('D M d Y H:i:s', time())]
+            );
+
             $reserva->delete();
             $ret = array('status'=>'ok', 'msg'=>"null");
         } catch (\Illuminate\Database\QueryException $e) {

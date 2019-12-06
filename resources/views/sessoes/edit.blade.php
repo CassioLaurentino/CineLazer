@@ -27,7 +27,7 @@ Edição de Sessão
 
         <div class="form-group">
             {!! Form::label('local', 'Local:') !!}
-            {!! Form::text('local', $sessoes->nome, ['class'=>'form-control']) !!}
+            {!! Form::text('local', $sessoes->local, ['class'=>'form-control']) !!}
         </div>
 
         <div class="form-group">
