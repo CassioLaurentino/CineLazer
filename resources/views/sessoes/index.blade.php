@@ -24,6 +24,7 @@ Sessões
                     <th>Local</th>
                     <th>Data</th>
                     <th>Hora</th>
+                    <th>Sala</th>
                     <th>Numero de poltronas</th>
                     <th>Numero de poltronas reservadas</th>
                 </tr>
@@ -38,6 +39,7 @@ Sessões
                         <td>{{ $ses->local }}</td>
                         <td>{{ date('d-m-Y', strtotime($ses->data)) }}</td>
                         <td>{{ $ses->hora }}</td>
+                        <td>{{ $ses->sala->nome }}</td>
                         <td>{{ sizeof($ses->numero_de_poltronas)-1 }}</td>
                         <td>{{ $ses->poltronas_reservadas }}</td>
                         

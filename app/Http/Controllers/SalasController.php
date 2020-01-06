@@ -48,7 +48,9 @@ class SalasController extends Controller
     }
 
     public function update(SalasRequest $request, $id) {
-        Salas::find($id)->update($request->all());
+        $novo_sala = $request->all();
+        $novo_sala['numero_de_poltronas'] = $novo_sala['colunas'] * $novo_sala['fileiras'];
+        Salas::find($id)->update($novo_sala);
         return redirect()->route('salas');    
     }
 }
